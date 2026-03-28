@@ -4,6 +4,7 @@ import { AppEnvironment, getAppConfig } from './config/app.config';
 import { getDatabaseConfig } from './config/database.config';
 import { daos } from './common/dao';
 import { HealthModule } from './modules/health/health.module';
+import { PromocodesModule } from './modules/promocodes/promocodes.module';
 
 const appConfig = getAppConfig();
 const databaseConfig = getDatabaseConfig();
@@ -30,6 +31,7 @@ const databaseConfig = getDatabaseConfig();
       synchronize: false,
     }),
     HealthModule,
+    PromocodesModule,
   ],
 })
 export class AppModule {}
