@@ -1,5 +1,14 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiConflictResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+} from '@nestjs/swagger';
 import { PromocodesService } from '../domain';
 import { ActivatePromocodeBody, CreatePromocodeBody } from './bodies';
 import { GetPromocodeIdParams } from './params';
@@ -14,6 +23,8 @@ export class PromocodesController {
   ) {}
 
   @Get()
+  @ApiOperation({ summary: 'Get all promocodes' })
+  @ApiOkResponse({ description: 'Promocodes list' })
   async getAllPromocodes() {
     const promocodes = await this.promocodesService.getAllPromocodes();
 
@@ -25,6 +36,10 @@ export class PromocodesController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get promocode by id' })
+  @ApiParam({ name: 'id', format: 'uuid', description: 'Promocode id' })
+  @ApiOkResponse({ description: 'Promocode details' })
+  @ApiNotFoundResponse({ description: 'Promocode not found' })
   async getPromocodeById(@Param() param: GetPromocodeIdParams) {
     const promocode = await this.promocodesService.getPromocodeById(param.id);
 
@@ -34,6 +49,10 @@ export class PromocodesController {
   }
 
   @Post()
+  @ApiOperation({ summary: 'Create promocode' })
+  @ApiCreatedResponse({ description: 'Promocode created' })
+  @ApiConflictResponse({ description: 'Promocode already exists' })
+  @ApiBadRequestResponse({ description: 'Validation error' })
   async createPromocode(@Body() body: CreatePromocodeBody) {
     const promocode = await this.promocodesService.createPromocode({
       code: body.code,
@@ -50,6 +69,17 @@ export class PromocodesController {
   }
 
   @Post(':id/activate')
+  @ApiOperation({ summary: 'Activate promocode by email' })
+  @ApiParam({ name: 'id', format: 'uuid', description: 'Promocode id' })
+  @ApiOkResponse({ description: 'Promocode activated' })
+  @ApiNotFoundResponse({ description: 'Promocode not found' })
+  @ApiConflictResponse({
+    description: 'Email already activated this promocode',
+  })
+  @ApiBadRequestResponse({
+    description:
+      'Validation error, promocode expired, or activation limit reached',
+  })
   async activatePromocode(
     @Param() param: GetPromocodeIdParams,
     @Body() body: ActivatePromocodeBody,
