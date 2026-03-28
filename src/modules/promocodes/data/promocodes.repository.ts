@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ActivationDao, PromocodeDao } from 'src/common/dao';
-import { Activation, Promocode } from 'src/common/entities';
+import { ActivationDao, PromocodeDao } from '../../../common/dao';
+import { Activation, Promocode } from '../../../common/entities';
 
 @Injectable()
 export class PromocodesRepository {

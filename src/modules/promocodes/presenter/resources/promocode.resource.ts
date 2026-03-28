@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Promocode } from 'src/common/entities';
+import { Promocode } from '../../../../common/entities';
 
 @Injectable()
 export class PromocodeResource {

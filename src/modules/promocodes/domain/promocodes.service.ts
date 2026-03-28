@@ -5,8 +5,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { ActivationDao, PromocodeDao } from 'src/common/dao';
-import { Promocode } from 'src/common/entities';
+import { ActivationDao, PromocodeDao } from '../../../common/dao';
+import { Promocode } from '../../../common/entities';
 import { PromocodesRepository } from '../data';
 
 @Injectable()

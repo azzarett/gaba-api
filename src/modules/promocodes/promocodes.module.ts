@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ActivationDao, PromocodeDao } from 'src/common/dao';
+import { ActivationDao, PromocodeDao } from '../../common/dao';
 import { PromocodesRepository } from './data';
 import { PromocodesService } from './domain';
 import { PromocodesController } from './presenter';
