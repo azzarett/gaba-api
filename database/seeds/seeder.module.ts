@@ -4,7 +4,7 @@ import { AppEnvironment, getAppConfig } from 'src/config/app.config';
 import { getDatabaseConfig } from 'src/config/database.config';
 import { daos } from 'src/common/dao';
 import { Seeder } from './seeder';
-import { UsersSeeder } from './modules/users/users.seeder';
+import { PromocodesSeeder } from './modules/promocodes/promocodes.seeder';
 
 const appConfig = getAppConfig();
 const databaseConfig = getDatabaseConfig();
@@ -32,6 +32,6 @@ const databaseConfig = getDatabaseConfig();
     }),
     TypeOrmModule.forFeature(daos),
   ],
-  providers: [Seeder, UsersSeeder],
+  providers: [Seeder, PromocodesSeeder],
 })
 export class SeederModule {}

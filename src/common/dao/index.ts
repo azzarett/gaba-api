@@ -1,5 +1,7 @@
-import { UserDao } from './user.dao';
+import { ActivationDao } from './activation.dao';
+import { PromocodeDao } from './promocode.dao';
 
-export * from './user.dao';
+export * from './activation.dao';
+export * from './promocode.dao';
 
-export const daos = [UserDao];
+export const daos = [ActivationDao, PromocodeDao];

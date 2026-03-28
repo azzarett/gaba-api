@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { UsersSeeder } from './modules/users/users.seeder';
+import { PromocodesSeeder } from './modules/promocodes/promocodes.seeder';
 
 @Injectable()
 export class Seeder {
-  constructor(private readonly usersSeeder: UsersSeeder) {}
+  constructor(private readonly promocodesSeeder: PromocodesSeeder) {}
 
   async seed() {
-    await this.usersSeeder.run();
+    await this.promocodesSeeder.run();
   }
 }
