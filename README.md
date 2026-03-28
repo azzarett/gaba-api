@@ -24,20 +24,20 @@ $ nvm use
 $ npm run start:dev
 ```
 
-## Docker (API + PostgreSQL)
+## Docker (PostgreSQL only)
 
 ```bash
 # create local environment file
 $ cp .env.example .env
 
-# build and start containers in background
-$ docker compose up --build -d
+# start PostgreSQL container in background
+$ docker compose up -d
 
 # check containers state
 $ docker compose ps
 
-# tail API logs
-$ docker compose logs -f api
+# tail PostgreSQL logs
+$ docker compose logs -f postgres
 
 # stop containers
 $ docker compose down
@@ -48,8 +48,14 @@ $ docker compose down -v
 
 Service endpoints:
 
-- API: `http://localhost:4004`
 - PostgreSQL: `localhost:${DB_PORT}`
+
+Run API locally:
+
+```bash
+$ npm run migration:run
+$ npm run start:dev
+```
 
 ## Test
 

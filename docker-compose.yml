@@ -17,20 +17,5 @@ services:
       timeout: 5s
       retries: 10
 
-  api:
-    container_name: promocodes-api
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    env_file:
-      - .env
-    depends_on:
-      postgres:
-        condition: service_healthy
-    ports:
-      - '${APP_PORT}:4004'
-    command: sh -c "npm run migration:run && npm run start:prod"
-
 volumes:
   promocodes-postgres-data:
