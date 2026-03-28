@@ -24,6 +24,33 @@ $ nvm use
 $ npm run start:dev
 ```
 
+## Docker (API + PostgreSQL)
+
+```bash
+# create local environment file
+$ cp .env.example .env
+
+# build and start containers in background
+$ docker compose up --build -d
+
+# check containers state
+$ docker compose ps
+
+# tail API logs
+$ docker compose logs -f api
+
+# stop containers
+$ docker compose down
+
+# stop containers and remove DB volume
+$ docker compose down -v
+```
+
+Service endpoints:
+
+- API: `http://localhost:4004`
+- PostgreSQL: `localhost:${DB_PORT}`
+
 ## Test
 
 ```bash
